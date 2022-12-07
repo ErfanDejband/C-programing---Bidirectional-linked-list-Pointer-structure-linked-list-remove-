@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct num_storage
+typedef struct num_storage // creating a node for storage data
 {
     int number;
-    struct num_storage *next;
+    struct num_storage *next; // add a link to a previous num_storage
     struct num_storage *prev; // add a link to a previous num_storage
 } tNumStorage;
 
-typedef struct num_stor_head
+typedef struct num_stor_head //creating a storage head to save head and tail and number of items
 {
     int counts;
     struct num_storage *head;
@@ -27,7 +27,7 @@ int main (void)
 {
     int i;
     tNumStorHead *list;
-    list = (tNumStorHead *) malloc (sizeof(tNumStorHead));
+    list = (tNumStorHead *) malloc (sizeof(tNumStorHead)); // alocate the memory space 
     initial_list(list);
     get_input(list);
 }
@@ -71,7 +71,7 @@ void add_number(tNumStorHead *list, int input)
     tNumStorage *Uinput;
     Uinput = (tNumStorage *) malloc (sizeof(tNumStorage));
     Uinput->number=input; // give number
-    if (list->counts == 0) // create only a head
+    if (list->counts == 0) // create only a node and both head nad tail point to it
     {
         list->head = Uinput;
         list->tail = Uinput;
@@ -93,15 +93,14 @@ void add_number(tNumStorHead *list, int input)
         if(possition>2){
             printf("No such choose !\n");
             get_input(list);
-        }
+        } // end check errors
 
-        if(possition==1){
+        if(possition==1){ // check position
             list->head->prev = Uinput;
             Uinput->prev = NULL;
             list->head=list->head->prev;
             list->previous_tail=list->head;
             Uinput->next=list->tail;
-            // list->tail->next = NULL;
         }else{
             list->head->next = Uinput;
             list->tail=Uinput;
@@ -110,7 +109,7 @@ void add_number(tNumStorHead *list, int input)
             list->tail->prev = list->previous_tail;
         }
     }
-    //previous tail will be tail before updating
+    //more than 2 node
     else{
         printf("Specify a target location: ");
         scanf("%d", &target_location);
@@ -127,11 +126,8 @@ void add_number(tNumStorHead *list, int input)
             get_input(list);}
         else
         {
-
             tNumStorage *temp_p;
             temp_p = (tNumStorage *) malloc (sizeof(tNumStorage));
-            // tNumStorage *temp_p2;
-            // temp_p2 = (tNumStorage *) malloc (sizeof(tNumStorage));
             temp_p=list->head;
             int point_to_location=1;
             while (point_to_location!=target_location)
@@ -139,8 +135,8 @@ void add_number(tNumStorHead *list, int input)
                 point_to_location=point_to_location+1;
                 temp_p=temp_p->next;
             }
-            printf("\npoint_to_location = %d \n",point_to_location);
-            printf("temp_p->number = %d\n",temp_p->number);
+            // printf("\npoint_to_location = %d \n",point_to_location);
+            // printf("temp_p->number = %d\n",temp_p->number);
             if (possition==1)
             {
                 
@@ -187,7 +183,7 @@ void add_number(tNumStorHead *list, int input)
     list->counts = list->counts+1;
 }
 
-void delete_last(tNumStorHead *list){ // ne function to delet
+void delete_last(tNumStorHead *list){ // the function to delet
     if(list->counts==0){ // if there is nothing or it is beging of the program
         printf("\nThere is Nothing to delete ~('o')~");
     }
