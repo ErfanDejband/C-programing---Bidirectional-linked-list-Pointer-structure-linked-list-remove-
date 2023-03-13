@@ -1,4 +1,6 @@
-# C-programing---Bidirectional linked list (Pointer & Structure & linked list)
+# C-programing (course project)
+## Bidirectional linked list (Pointer & Structure & linked list)
+
 The purpose of my <b> C </b> code is to create a linked list, using structure and pointer as well
 in the link list each node conected backward and forward like the figure.
 
